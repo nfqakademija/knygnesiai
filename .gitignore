@@ -11,6 +11,7 @@
 /public/build/
 npm-debug.log
 yarn-error.log
+uploads/
 ###< symfony/webpack-encore-pack ###
 
 ###> Old symfony and common infrastructure ###

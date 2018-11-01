@@ -83,6 +83,7 @@ class Book
      */
     private $category;
 
+
     /**
      * @return int
      */
