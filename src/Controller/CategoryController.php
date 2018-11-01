@@ -6,7 +6,6 @@ namespace App\Controller;
 use App\Service\CategoryService;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,7 +19,8 @@ class CategoryController extends FOSRestController
     /**
      * @Route("/list")
      * @param CategoryService $categoryService
-     * @return JsonResponse
+     *
+     * @return View
      */
     public function index(CategoryService $categoryService): View
     {
