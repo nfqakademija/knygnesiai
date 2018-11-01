@@ -26,6 +26,8 @@ class BookRepository extends ServiceEntityRepository
     public function createAll(): QueryBuilder
     {
         $qb = $this->createQueryBuilder('b');
+        $qb
+            ->leftJoin('b.category', 'c');
 
         return $qb;
     }
