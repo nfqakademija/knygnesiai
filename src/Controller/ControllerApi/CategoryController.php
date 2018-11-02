@@ -4,28 +4,33 @@ namespace App\Controller\ControllerApi;
 
 
 use App\Service\CategoryService;
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\View\View;
-use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class CategoryController
  * @package App\Controller\
  */
-class CategoryController extends FOSRestController
+class CategoryController extends Controller
 {
     /**
-     * @Rest\Get("/categories")
+     * @Route("/categories/api")
      * @param CategoryService $categoryService
      *
-     * @return View
+     * @return JsonResponse
      */
-    public function index(CategoryService $categoryService): View
+    public function index(CategoryService $categoryService)
     {
         $categories= $categoryService->setReturnQuery(false)->getAll();
-        return View::create($categories, Response::HTTP_OK);
-
+        foreach ($categories as $category) {
+            $_category['id'] = $category->getId();
+            $_category['name'] = $category->getName();
+            $_category['createdAt'] = $category->getCreatedAt();
+            $_category['updatedAt'] = $category->getUpdatedAt();
+            $_categories[] = $_category;
+        }
+        return new JsonResponse($_categories, 200);
     }
 
 }
