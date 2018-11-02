@@ -9,6 +9,7 @@ use App\Entity\Traits\WithUpdatedAt;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
 class Book

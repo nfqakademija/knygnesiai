@@ -1,8 +1,13 @@
 {% extends 'base.html.twig' %}
 
+
+
 {% block title %}Homepage - {{ parent() }}{% endblock %}
 
 {% block stylesheets %}
+
+
+
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
     {{ parent() }}
     <style>
@@ -22,5 +27,7 @@
 {% endblock %}
 
 {% block body %}
+    <div id="root"></div>
     <div class="title">NFQ Akademija</div>
+    {#<script type="text/javascript" src="{{ asset('build/js/app.js') }}"></script>#}
 {% endblock %}

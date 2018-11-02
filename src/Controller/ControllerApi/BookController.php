@@ -5,28 +5,44 @@ namespace App\Controller\ControllerApi;
 
 
 use App\Service\BookService;
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\View\View;
-use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\Annotations as Rest;
-
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
  * Class BookController
  */
-class BookController extends FOSRestController
+class BookController extends Controller
 {
     /**
-     * @Rest\Get("/books")
+     * @Route("/books/api")
      * @param BookService $bookService
      *
-     * @return View
+     * @return JsonResponse
      */
-    public function index(BookService $bookService): View
+    public function index(BookService $bookService)
     {
-        $books= $bookService->setReturnQuery(false)->getAll();
-        return View::create($books, Response::HTTP_OK);
+        $books = $bookService->setReturnQuery(false)->getAll();
+        foreach ($books as $book) {
+            $_book['id'] = $book->getId();
+            $_book['name'] = $book->getName();
+            $_book['description'] = $book->getDescription();
+            $_book['author'] = $book->getAuthor();
+            $_book['year_publication'] = $book->getYearPublication();
+            $_book['page_count'] = $book->getPageCount();
+            $_book['status'] = $book->getStatus();
+            $_book['count_like'] = $book->getCountLike();
+            $_book['category'] = $book->getCategory()->getName();
+            $_book['createdAt'] = $book->getCreatedAt();
+            $_book['updatedAt'] = $book->getUpdatedAt();
+            $_book['media'] = $book->getMedia()->getFileName();
 
+
+            $_books[] = $_book;
+        }
+
+        return new JsonResponse($_books, 200);
     }
+
 }
