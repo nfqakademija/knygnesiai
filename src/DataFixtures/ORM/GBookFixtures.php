@@ -1,9 +1,9 @@
 <?php
 
-namespace App\DataFixtures;
+namespace App\DataFixtures\ORM;
 
-use App\DataFixtures\Traits\WithFileManagementTrait;
-use App\DataFixtures\Traits\WithRandomsTrait;
+use App\DataFixtures\ORM\Traits\WithFileManagementTrait;
+use App\DataFixtures\ORM\Traits\WithRandomsTrait;
 use App\Entity\Book\Book;
 use App\Entity\Category\Category;
 use App\Entity\Media\Media;
@@ -13,7 +13,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 /**
  * Class BookFixtures
  */
-class BookFixtures extends Fixture
+class GBookFixtures extends Fixture
 {
     use WithFileManagementTrait,
         WithRandomsTrait;
@@ -72,13 +72,14 @@ class BookFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-//        $categories = $manager->getRepository(Category::class)->findAll();
+
+        $categories = $manager->getRepository(Category::class)->findAll();
 
         for ($i = 0; $i < self::COUNT_BOOKS; $i++) {
             $media = (new Media())
                 ->setFile($this->randomImage('book', '.jpg'));
 
-//            $category = $categories[(rand(0, sizeof($categories) - 1))];
+            $category = $categories[(rand(0, sizeof($categories) - 1))];
             $name = self::$names[(rand(0, sizeof(self::$names) - 1))];
             $description = self::$descriptions[(rand(0, sizeof(self::$descriptions) - 1))];
             $author = self::$authors[(rand(0, sizeof(self::$authors) - 1))];
@@ -92,12 +93,12 @@ class BookFixtures extends Fixture
                 ->setPageCount(rand(50, 350))
                 ->setStatus(rand(0, 1))
                 ->setCountLike(rand(0, 25))
-                ->setMedia($media);
-//                ->setCategory($category);
+                ->setMedia($media)
+                ->setCategory($category);
 
             $manager->persist($media);
             $manager->persist($book);
-//            $manager->persist($category);
+            $manager->persist($category);
 
         }
 

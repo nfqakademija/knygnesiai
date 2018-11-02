@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataFixtures\Traits;
+namespace App\DataFixtures\ORM\Traits;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -49,6 +49,6 @@ trait WithFileManagementTrait
      */
     protected function fixturesPath()
     {
-        return __DIR__.'/../Data/';
+        return __DIR__.'/../../Data/';
     }
 }

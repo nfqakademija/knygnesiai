@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataFixtures\Traits;
+namespace App\DataFixtures\ORM\Traits;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

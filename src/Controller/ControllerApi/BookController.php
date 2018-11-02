@@ -1,23 +1,24 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\ControllerApi;
 
 
 use App\Service\BookService;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use FOS\RestBundle\Controller\Annotations as Rest;
+
+
 
 /**
  * Class BookController
- * @Route("/books")
  */
 class BookController extends FOSRestController
 {
     /**
-     * @Route("/list")
+     * @Rest\Get("/books")
      * @param BookService $bookService
      *
      * @return View
