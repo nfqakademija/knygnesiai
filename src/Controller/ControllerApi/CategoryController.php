@@ -1,23 +1,22 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\ControllerApi;
 
 
 use App\Service\CategoryService;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * Class CategoryController
- * @Route("/categories")
  * @package App\Controller\
  */
 class CategoryController extends FOSRestController
 {
     /**
-     * @Route("/list")
+     * @Rest\Get("/categories")
      * @param CategoryService $categoryService
      *
      * @return View
