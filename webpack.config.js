@@ -17,7 +17,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
-    .addEntry('js/app', './assets/js/app.js')
+    .addEntry('js/index', './assets/js/index.js')
     
     .addStyleEntry('css/app', './assets/css/app.scss')
     //.addEntry('page1', './assets/js/page1.js')
@@ -39,6 +39,10 @@ Encore
     // enables Sass/SCSS support
     .enableSassLoader()
     .enableReactPreset()
+    .configureBabel((config) => {
+        config.plugins = ['@babel/plugin-proposal-object-rest-spread'];
+        config.presets = ["@babel/preset-react"];
+    })
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 
