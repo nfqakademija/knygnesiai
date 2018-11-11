@@ -16,10 +16,9 @@ export default class Book extends React.Component{
     }
 
     render(){
-        console.log(this.state.highlighted)
         return(
             <div onMouseEnter={ this.toggleHighlighted } onMouseLeave={ this.toggleHighlighted } className={ "book-container " + (this.state.highlighted ? "book-container--highlighted" : "")}>
-                <img className="book-container__img" src={ this.props.image } alt="book"/>
+                <img className="book-container__img" src={ require('../../../public/uploads/' + this.props.media) } alt="book"/>
                 <div className="book-container__title">{this.props.title}</div> 
                 <div className="book-container__author">by {this.props.author}</div>
                 <div className="book-container__rating"></div>
