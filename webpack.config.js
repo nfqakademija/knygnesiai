@@ -19,7 +19,7 @@ Encore
      */
     .addEntry('js/index', './assets/js/index.js')
     
-    .addStyleEntry('css/app', './assets/css/app.scss')
+    .addStyleEntry('css/app', './assets/css/app.css')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 

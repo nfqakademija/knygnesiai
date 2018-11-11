@@ -75,7 +75,7 @@ class Book
      *
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $count_like;
+    private $like_count;
 
     /**
      * @var Category
@@ -218,17 +218,17 @@ class Book
      */
     public function getCountLike(): ?int
     {
-        return $this->count_like;
+        return $this->like_count;
     }
 
     /**
-     * @param int|null $count_like
+     * @param int|null $like_count
      *
      * @return Book
      */
-    public function setCountLike(?int $count_like): Book
+    public function setCountLike(?int $like_count): Book
     {
-        $this->count_like = $count_like;
+        $this->count = $like_count;
 
         return $this;
     }

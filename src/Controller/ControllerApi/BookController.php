@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookController extends Controller
 {
     /**
-     * @Route("/books/api")
+     * @Route("/books")
      * @param BookService $bookService
      *
      * @return JsonResponse
@@ -32,13 +32,11 @@ class BookController extends Controller
             $_book['year_publication'] = $book->getYearPublication();
             $_book['page_count'] = $book->getPageCount();
             $_book['status'] = $book->getStatus();
-            $_book['count_like'] = $book->getCountLike();
+            $_book['like_count'] = $book->getCountLike();
             $_book['category'] = $book->getCategory()->getName();
             $_book['createdAt'] = $book->getCreatedAt();
             $_book['updatedAt'] = $book->getUpdatedAt();
             $_book['media'] = $book->getMedia()->getFileName();
-
-
             $_books[] = $_book;
         }
 

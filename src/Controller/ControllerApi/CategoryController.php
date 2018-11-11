@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends Controller
 {
     /**
-     * @Route("/categories/api")
+     * @Route("/categories")
      * @param CategoryService $categoryService
      *
      * @return JsonResponse
