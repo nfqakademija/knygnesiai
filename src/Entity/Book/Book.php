@@ -33,7 +33,7 @@ class Book
      *
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $title;
 
     /**
      * @var string
@@ -54,14 +54,14 @@ class Book
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $year_publication;
+    private $yearPublication;
 
     /**
      * @var int
      *
      * @ORM\Column(type="integer")
      */
-    private $page_count;
+    private $pageCount;
 
     /**
      * @var boolean
@@ -75,7 +75,7 @@ class Book
      *
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $like_count;
+    private $countLike;
 
     /**
      * @var Category
@@ -96,19 +96,19 @@ class Book
     /**
      * @return string
      */
-    public function getName(): ?string
+    public function getTitle(): ?string
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * @param string $name
+     * @param string $title
      *
      * @return Book
      */
-    public function setName(string $name): Book
+    public function setTitle(string $title): Book
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
@@ -158,17 +158,17 @@ class Book
      */
     public function getYearPublication(): ?string
     {
-        return $this->year_publication;
+        return $this->yearPublication;
     }
 
     /**
-     * @param string $year_publication
+     * @param string $yearPublication
      *
      * @return Book
      */
-    public function setYearPublication(string $year_publication): Book
+    public function setYearPublication(string $yearPublication): Book
     {
-        $this->year_publication = $year_publication;
+        $this->yearPublication = $yearPublication;
 
         return $this;
     }
@@ -178,17 +178,17 @@ class Book
      */
     public function getPageCount(): ?int
     {
-        return $this->page_count;
+        return $this->pageCount;
     }
 
     /**
-     * @param int $page_count
+     * @param int $pageCount
      *
      * @return Book
      */
-    public function setPageCount(int $page_count): Book
+    public function setPageCount(int $pageCount): Book
     {
-        $this->page_count = $page_count;
+        $this->pageCount = $pageCount;
 
         return $this;
     }
@@ -218,17 +218,17 @@ class Book
      */
     public function getCountLike(): ?int
     {
-        return $this->like_count;
+        return $this->countLike;
     }
 
     /**
-     * @param int|null $like_count
+     * @param int|null $countLike
      *
      * @return Book
      */
-    public function setCountLike(?int $like_count): Book
+    public function setCountLike(?int $countLike): Book
     {
-        $this->count = $like_count;
+        $this->countLike = $countLike;
 
         return $this;
     }
