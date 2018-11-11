@@ -78,7 +78,7 @@ export default class MainContent extends React.Component {
                         </aside>
                         <div className="right-container">
                             <div className="bookList-container">
-                                {/* <BookList /> */}
+                                <BookList />
                             </div>
                         </div>
                     </div>
