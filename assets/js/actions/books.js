@@ -1,6 +1,6 @@
 export const fetchBooks = () => {
     return dispatch => {
-        fetch("http://localhost:3000/books")
+        fetch("http://127.0.0.1:8000/books")
             .then(response => response.json())
             .then(json => dispatch(loadBooks(json)));
     }
