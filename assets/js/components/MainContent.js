@@ -35,21 +35,6 @@ export default class MainContent extends React.Component {
             "other"
         ].map((item, index) => <li className="filter-list__item" key={ index }><span className="filter-list__checkbox">{ item }</span><span className="filter-list__count">(200)</span></li>)
 
-        const categories = [
-            "Biographies", 
-            "Business", 
-            "Cookbooks", 
-            "Health & Fitness", 
-            "History", 
-            "Mystery", 
-            "Inspiration", 
-            "Romance", 
-            "Fiction",
-            "Humor books",
-            "Books for kids"
-        ].map((item, index) => <li className="filter-list__item" key={ index }><span>{ item }</span><span className="filter-list__count">(200)</span></li>)
-
-
         return(
             <React.Fragment>
                 <header className="header">
@@ -74,14 +59,6 @@ export default class MainContent extends React.Component {
                     <div className="content-wrapper">
                         <aside className="left-container">
                             <CategoryFilter />
-                            {/* <div className="filter-list__container">
-                                <div className="filter-list">
-                                    <div className="filter-list__title">Categories</div>
-                                    <ul>
-                                        { categories }
-                                    </ul>
-                                </div>
-                            </div> */}
                             <div className="filter-list__container">
                                 <div className="filter-list">
                                     <div className="filter-list__title">Languages</div>
