@@ -23,7 +23,7 @@ class GBookFixtures extends Fixture
     /**
      * @var array
      */
-    public static $names = [
+    public static $titles = [
         'Arts',
         'Start',
         'Wars',
@@ -80,13 +80,13 @@ class GBookFixtures extends Fixture
                 ->setFile($this->randomImage('book', '.jpg'));
 
             $category = $categories[(rand(0, sizeof($categories) - 1))];
-            $name = self::$names[(rand(0, sizeof(self::$names) - 1))];
+            $title = self::$titles[(rand(0, sizeof(self::$titles) - 1))];
             $description = self::$descriptions[(rand(0, sizeof(self::$descriptions) - 1))];
             $author = self::$authors[(rand(0, sizeof(self::$authors) - 1))];
 
 
             $book = (new Book())
-                ->setName($name)
+                ->setTitle($title)
                 ->setDescription($description)
                 ->setAuthor($author)
                 ->setYearPublication(rand(1965, 2017))

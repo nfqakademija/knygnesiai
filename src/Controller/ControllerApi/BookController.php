@@ -26,13 +26,13 @@ class BookController extends Controller
         $books = $bookService->setReturnQuery(false)->getAll();
         foreach ($books as $book) {
             $_book['id'] = $book->getId();
-            $_book['name'] = $book->getName();
+            $_book['title'] = $book->getTitle();
             $_book['description'] = $book->getDescription();
             $_book['author'] = $book->getAuthor();
-            $_book['year_publication'] = $book->getYearPublication();
-            $_book['page_count'] = $book->getPageCount();
+            $_book['yearPublication'] = $book->getYearPublication();
+            $_book['pageCount'] = $book->getPageCount();
             $_book['status'] = $book->getStatus();
-            $_book['like_count'] = $book->getCountLike();
+            $_book['likeCount'] = $book->getCountLike();
             $_book['category'] = $book->getCategory()->getName();
             $_book['createdAt'] = $book->getCreatedAt();
             $_book['updatedAt'] = $book->getUpdatedAt();
