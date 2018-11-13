@@ -1,16 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchBooks } from "../actions/books";
+import { NavLink } from 'react-router-dom';
+import { fetchAllBooks } from "../actions/books";
 import Book from "./Book";
 
 class BookList extends React.Component{
     
     componentDidMount() {
-        this.props.fetchBooks();
+        this.props.fetchAllBooks();
     }
     
     render() {
-        const books = this.props.books.map((item, index) => <Book key={ index } {...item} />);
+        const books = this.props.books.map((item, index) => <NavLink key={ item.id } to={'/books/' + item.id}><Book key={ item.id } {...item} /></NavLink>);
         return(
             <React.Fragment>
                 { books }
@@ -24,7 +25,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    fetchBooks: () => dispatch(fetchBooks())
+    fetchAllBooks: () => dispatch(fetchAllBooks())
 })
 
 
