@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookController extends Controller
 {
     /**
-     * @Route("/books")
+     * @Route("/api/books")
      * 
      * @param BookService $bookService
      *
@@ -45,7 +45,7 @@ class BookController extends Controller
     }
     
     /**
-     * @Route("/books/{id}")
+     * @Route("/api/books/{id}")
      *
      * @return JsonResponse
      */
