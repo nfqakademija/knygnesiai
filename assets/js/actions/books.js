@@ -34,7 +34,7 @@ export const uploadBook = newBook => {
 
 export const fetchAllBooks = () => {
     return dispatch => {
-        fetch("http://127.0.0.1:8000/books")
+        fetch("/api/books")
             .then(response => response.json())
             .then(json => dispatch(loadBooks(json)));
     }
@@ -42,7 +42,7 @@ export const fetchAllBooks = () => {
 
 export const searchBooks = (searchString) => {
     return dispatch => {
-        fetch("http://127.0.0.1:8000/books?q=" + searchString)
+        fetch("/api/books?q=" + searchString)
             .then(response => response.json())
             .then(json => dispatch(loadBooksDropdown(json)));
     }
