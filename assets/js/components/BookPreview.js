@@ -20,7 +20,7 @@ class BookPreview extends React.Component {
 
     fetchBook(){
         const book_id = this.props.match.params.id;
-        const url = 'http://127.0.0.1:8000/books/' + book_id;
+        const url = '/api/books/' + book_id;
         fetch(url)
           .then(response => response.json())
           .then(json => this.setState({data: json}))   
