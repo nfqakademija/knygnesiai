@@ -1,16 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from "../actions/categories";
-
+import { setCategory } from "../actions/categories";
 
 class CategoryFilter extends React.Component {
-
+    
     componentDidMount() {
         this.props.fetchCategories();
     }
 
     render() {
-        const categories = this.props.categories.map(item => <li className="filter-list__item" key={ item.id }><span>{ item.name }</span><span className="filter-list__count">(200)</span></li>)
+        const categories = this.props.categories.map(item => 
+            <li className="filter-list__item" key={ item.id }>
+                <span onClick={() => this.props.setCategory(item.id) }>{ item.name }</span>
+                <span className="filter-list__count">(200)</span>
+            </li>
+        )
         return (
             <div className="filter-list__container">
                 <div className="filter-list">
@@ -29,7 +34,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchCategories: () => dispatch(fetchCategories())
+    fetchCategories: () => dispatch(fetchCategories()),
+    setCategory: (id) => dispatch(setCategory(id)) 
 })
 
 
