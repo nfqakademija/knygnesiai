@@ -1,17 +1,17 @@
 const initialState = {
     items: [],
-    selected: []
+    selected: ""
 }
 
 const categoryReducer = (state = initialState, action) => {
-    let updatedSelected;
+    console.log(action)
     switch(action.type) {
         case "LOAD_CATEGORIES":
             return {...state, items: action.categories}
-        case "ADD_TO_SELECTED":
-            updatedSelected = state.selected.slice();
-            updatedSelected.push(action.category); 
-            return {...state, selected: updatedSelected}
+        case "SET_CATEGORY":
+            // updatedSelected = state.selected.slice();
+            // updatedSelected.push(action.category); 
+            return {...state, selected: action.categoryId}
         default:
             return state;
     }
