@@ -6,6 +6,11 @@ export const fetchCategories = () => {
     }
 }
 
+export const setCategory = (categoryId) => ({
+    categoryId,
+    type: "SET_CATEGORY"
+})
+
 export const loadCategories = categories => ({
     categories,
     type: "LOAD_CATEGORIES"
