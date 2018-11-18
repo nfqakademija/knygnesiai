@@ -339,3 +339,11 @@ input, button {
     color: gray;
 }
 
+.bookPreview__closeBtnContainer {
+    float: right;
+}
+
+.bookPreview__closeBtn {
+    font-size: 25px;
+}
+

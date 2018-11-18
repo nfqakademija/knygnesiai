@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 class BookPreview extends React.Component {
     constructor(props) {
@@ -33,6 +34,7 @@ class BookPreview extends React.Component {
         return (
             <React.Fragment>
             <div className="bookPreview__mainContainer">
+                <div className="bookPreview__closeBtnContainer"><NavLink to="/"><i className="fas fa-times bookPreview__closeBtn"></i></NavLink></div>
                 <div className="bookPreview__leftContainer">
                     <div className="bookPreview__contentContainer">
                         <img className= "bookPreview__image" src={require('../../../public/uploads/' + this.state.data.media)} alt="book"></img>
