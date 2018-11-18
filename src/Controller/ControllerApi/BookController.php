@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -45,7 +46,7 @@ class BookController extends Controller
     }
     
     /**
-     * @Route("/api/books/{id}")
+     * @Route("/api/books/{id}", requirements={"id"="\d+"})
      *
      * @return JsonResponse
      */
@@ -54,6 +55,25 @@ class BookController extends Controller
            ->getRepository("App\Entity\Book\Book")
            ->find($id);
         $response = $this->insertData(array(), $book);
+        return new JsonResponse($response, 200);
+    }
+
+    /**
+     * @Route("/api/books/categories/{categoryId}")
+     * 
+     * @return JsonResponse
+     */
+    public function getByCategory($categoryId){
+
+        $books = $this->getDoctrine()
+        ->getRepository("App\Entity\Book\Book")
+        ->findByCategory($categoryId);
+        $response = array();
+        $bookObj = array();
+        foreach($books as $bookData) {
+            $bookObj = $this->insertData($bookObj, $bookData);
+            array_push($response, $bookObj);
+        }
         return new JsonResponse($response, 200);
     }
 
@@ -66,7 +86,7 @@ class BookController extends Controller
         $emptyArray['yearPublication'] = $data->getYearPublication();
         $emptyArray['pageCount'] = $data->getPageCount();
         $emptyArray['status'] = $data->getStatus();
-        $emptyArray['likeCount'] = $data->getCountLike();
+        $emptyArray['likeCount'] = $data->getLikeCount();
         $emptyArray['category'] = $data->getCategory()->getName();
         $emptyArray['createdAt'] = $data->getCreatedAt();
         $emptyArray['updatedAt'] = $data->getUpdatedAt();
