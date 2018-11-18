@@ -35,8 +35,17 @@ export const uploadBook = newBook => {
 export const fetchAllBooks = () => {
     return dispatch => {
         fetch("/api/books")
-            .then(response => response.json())
-            .then(json => dispatch(loadBooks(json)));
+        .then(response => response.json())
+        .then(json => dispatch(loadBooks(json)));
+    }
+}
+
+export const fetchBooksByCategory = () => {
+    return (dispatch, getState) => {
+        const category = getState().categories.selected;
+        fetch('/api/books/categories/' + category)
+        .then(response => response.json())
+        .then(json => dispatch(loadBooks(json)))
     }
 }
 
