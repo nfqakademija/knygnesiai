@@ -3,5 +3,9 @@ home:
     defaults: { _controller: App\Controller\HomeController::index }
     requirements:
       req: ".+"
-    
 
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+api_login_check:
+    path: /api/login_check
