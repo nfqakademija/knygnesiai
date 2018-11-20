@@ -16,14 +16,25 @@
 .filter-list__item {
     padding: 6px;
     padding-left: 0px;
-    border-bottom: #e1e1e1 dashed 1px;
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: all .5s;
+
+    color: #424242;
 }
 
-.filter-list li:hover {
+.filter-list__item:hover {
     cursor: pointer;
+    padding-left: 20px;
+    background: #e1e1e1;
+}
+
+.filter-list__item--selected {
+    padding-left: 20px;
+    background: #F7D358 !important;
+    
 }
 
 .filter-list__checkbox::before {
@@ -43,5 +54,6 @@
     padding: 5px;
     padding-left: 0px;
     border-bottom: #e1e1e1 solid 1px;
+    margin-bottom: -1px;
 }
 
