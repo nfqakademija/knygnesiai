@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-
+use App\Entity\Book\Book;
 
 
 /**
@@ -20,7 +20,7 @@ class BookController extends Controller
 {
     /**
      * @Route("/api/books")
-     * 
+     *
      * @param BookService $bookService
      *
      * @return JsonResponse
@@ -32,18 +32,12 @@ class BookController extends Controller
         $category = $request->query->get('category');
 
         $books = $this->getDoctrine()
-          ->getRepository("App\Entity\Book\Book")
+          ->getRepository(Book::class)
           ->getBooks($queryString, $category);
-        
-        $response = [];
-        
-        foreach($books as $bookData) {
-            $bookObj = $bookService->getJSONdata($bookData);
-            array_push($response, $bookObj);
-        }
-        return new JsonResponse($response, 200);
+
+        return new JsonResponse($books, 200);
     }
-    
+
     /**
      * @Route("/api/books/{id}", requirements={"id"="\d+"})
      *

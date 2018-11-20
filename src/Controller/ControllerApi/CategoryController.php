@@ -22,6 +22,7 @@ class CategoryController extends Controller
      */
     public function index(CategoryService $categoryService)
     {
+        $_categories = [];
         $categories= $categoryService->setReturnQuery(false)->getAll();
         foreach ($categories as $category) {
             $_category['id'] = $category->getId();
