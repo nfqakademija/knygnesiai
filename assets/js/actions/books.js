@@ -32,28 +32,22 @@ export const uploadBook = newBook => {
     }
 }
 
-export const fetchAllBooks = () => {
-    return dispatch => {
-        fetch("/api/books")
+export const fetchBooks = (category = 0) => {
+    return (dispatch, getState) => {
+        if (!category) {
+            category = getState().categories.selected;
+        }
+        fetch(`/api/books?category=${category}`)
         .then(response => response.json())
         .then(json => dispatch(loadBooks(json)));
-    }
-}
-
-export const fetchBooksByCategory = () => {
-    return (dispatch, getState) => {
-        const category = getState().categories.selected;
-        fetch('/api/books/categories/' + category)
-        .then(response => response.json())
-        .then(json => dispatch(loadBooks(json)))
     }
 }
 
 export const searchBooks = (searchString) => {
     return dispatch => {
         fetch("/api/books?q=" + searchString)
-            .then(response => response.json())
-            .then(json => dispatch(loadBooksDropdown(json)));
+        .then(response => response.json())
+        .then(json => dispatch(loadBooksDropdown(json)));
     }
 }
 
