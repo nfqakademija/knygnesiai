@@ -11,8 +11,8 @@ class CategoryFilter extends React.Component {
 
     render() {
         const categories = this.props.categories.map(item => 
-            <li className="filter-list__item" key={ item.id }>
-                <span onClick={() => this.props.setCategory(item.id) }>{ item.name }</span>
+            <li onClick={() => this.props.setCategory(item.id)} className={ "filter-list__item " + (this.props.selected === item.id ? "filter-list__item--selected":"")} key={ item.id }>
+                <span>{ item.name }</span>
                 <span className="filter-list__count">(200)</span>
             </li>
         )
@@ -30,7 +30,8 @@ class CategoryFilter extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    categories: state.categories.items
+    categories: state.categories.items,
+    selected: state.categories.selected
 })
 
 const mapDispatchToProps = dispatch => ({
