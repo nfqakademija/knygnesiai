@@ -92,7 +92,7 @@ class GBookFixtures extends Fixture
                 ->setYearPublication(rand(1965, 2017))
                 ->setPageCount(rand(50, 350))
                 ->setStatus(rand(0, 1))
-                ->setCountLike(rand(0, 25))
+                ->setLikeCount(rand(0, 25))
                 ->setMedia($media)
                 ->setCategory($category);
 
