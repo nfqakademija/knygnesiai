@@ -5,7 +5,8 @@ class BookPreview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data:  null
+            data:  null,
+            display: false
         }
     }
 
@@ -34,7 +35,6 @@ class BookPreview extends React.Component {
         return (
             <React.Fragment>
             <div className="bookPreview__mainContainer">
-                <div className="bookPreview__closeBtnContainer"><NavLink to="/"><i className="fas fa-times bookPreview__closeBtn"></i></NavLink></div>
                 <div className="bookPreview__leftContainer">
                     <div className="bookPreview__contentContainer">
                         <img className= "bookPreview__image" src={require('../../../public/uploads/' + this.state.data.media)} alt="book"></img>
@@ -42,20 +42,21 @@ class BookPreview extends React.Component {
                 </div>
                 <div className="bookPreview__rightContainer">
                     <div className="bookPreview__contentContainer">
+                        <NavLink to="/"><div className="bookPreview__closeBtnContainer"></div></NavLink>
                         <div>
                             <h1 className="bookPreview__title">{this.state.data.title}</h1>
                         </div>
                         <div>
-                            <p className="">by {this.state.data.author}</p>
+                            <p className="bookPreview__author">by {this.state.data.author}</p>
                         </div>
                         <div>
-                            <p className="">published in {this.state.data.yearPublication}</p>
+                            <p className="bookPreview__year">published in {this.state.data.yearPublication}</p>
                         </div>
                         <div>
                             <p className="bookPreview__description"><em>{this.state.data.description}</em></p>
                         </div>
                         <div>
-                            <p className=""><em>Current rating: {this.state.data.likeCount}</em></p>
+                            <p className="bookPreview__rating"><em>Current rating: {this.state.data.likeCount}</em></p>
                         </div>
                     </div>
                 </div>
