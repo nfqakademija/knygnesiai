@@ -1,26 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom';
-import { fetchAllBooks } from "../actions/books";
+import { fetchBooks } from "../actions/books";
 import { fetchBooksByCategory } from "../actions/books";
 import Book from "./Book";
 
 class BookList extends React.Component{
     
     componentDidMount() {
-        if (this.props.category) {
-            this.props.fetchBooksByCategory();
-        } else {
-            this.props.fetchAllBooks();
-        }
+        this.props.fetchBooks();
     }
-
-    componentDidUpdate(props) {
-        if (this.props.category != props.category) {
-            this.props.fetchBooksByCategory();
-        }
-    }
-
     
     render() {
         console.log(this.props.category)
@@ -34,13 +23,11 @@ class BookList extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-    books: state.books.items,
-    category: state.categories.selected
+    books: state.books.items
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    fetchAllBooks: () => dispatch(fetchAllBooks()),
-    fetchBooksByCategory: () => dispatch(fetchBooksByCategory())
+    fetchBooks: () => dispatch(fetchBooks())
 })
 
 
