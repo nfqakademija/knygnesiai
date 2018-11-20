@@ -24,6 +24,7 @@ import SearchDropdown from './SearchDropdown';
 
 
     toggleDropdown() {
+        console.log("toggle dropdown")
         setTimeout(() => this.setState({displayDropdown: !this.state.displayDropdown}), 100);
     }
         
