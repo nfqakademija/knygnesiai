@@ -2,6 +2,7 @@ import React from "react";
 import SubmitForm from "./SubmitForm";
 import BookList from "./BookList";
 import CategoryFilter from  "./CategoryFilter";
+import SearchStatus from "./SearchStatus";
 
 
 export default class Catalogue extends React.Component {
@@ -59,6 +60,7 @@ export default class Catalogue extends React.Component {
                             </div> */}
                         </aside>
                         <div className="right-container">
+                            <SearchStatus />
                             <div className="bookList-container">
                                 <BookList />
                             </div>
