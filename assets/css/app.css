@@ -6,6 +6,7 @@
 @import "./book-container.css";
 @import "./book-preview.css";
 @import "./search-dropdown.css";
+@import "./search-status.css";
 
 * {
     box-sizing: border-box;
