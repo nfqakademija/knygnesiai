@@ -8,11 +8,12 @@ export const fetchCategories = () => {
     }
 }
 
-export const setCategory = (categoryId) => (dispatch, getState) => {
+export const setCategory = (categoryId, name) => (dispatch, getState) => {
     if (getState().categories.selected === categoryId) return;
     dispatch(fetchBooks(categoryId));
     dispatch({
         categoryId,
+        name,
         type: "SET_CATEGORY"
     })
 }
