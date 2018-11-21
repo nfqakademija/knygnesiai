@@ -17,7 +17,11 @@
     display: flex;
     flex: 2 0 auto;
     padding: 10px 20px;
-    
+    ;
+}
+
+.navBar__link:hover {
+    cursor: pointer
 }
 
 .actions {

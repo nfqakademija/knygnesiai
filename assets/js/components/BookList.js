@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { fetchBooks } from "../actions/books";
-import { fetchBooksByCategory } from "../actions/books";
 import Book from "./Book";
 
 class BookList extends React.Component{
@@ -12,8 +11,7 @@ class BookList extends React.Component{
     }
     
     render() {
-        console.log(this.props.category)
-        const books = this.props.books.map((item, index) => <NavLink key={ item.id } to={'/books/' + item.id}><Book key={ item.id } {...item} /></NavLink>);
+        const books = this.props.books.map(item => <NavLink key={ item.id } to={'/books/' + item.id}><Book key={ item.id } {...item} /></NavLink>);
         return(
             <React.Fragment>
                 { books }

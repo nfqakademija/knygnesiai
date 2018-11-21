@@ -8,6 +8,10 @@ export const loadBooks = books => ({
     type: "LOAD_BOOKS"
 })
 
+export const resetBookList = () => ({
+   type: "RESET_BOOK_LIST"
+})
+
 export const addBook = newBook => ({
     newBook,
     type: "ADD_BOOK"
@@ -32,20 +36,21 @@ export const uploadBook = newBook => {
     }
 }
 
-export const fetchBooks = (category = 0) => {
+export const fetchBooks = (category) => {
     return (dispatch, getState) => {
-        if (!category) {
+        const searchString = getState().mainSearch.searchString;
+        if (category === undefined) {
             category = getState().categories.selected;
         }
-        fetch(`/api/books?category=${category}`)
+        fetch(`/api/books?category=${category}&title=${searchString}`)
         .then(response => response.json())
         .then(json => dispatch(loadBooks(json)));
     }
 }
 
-export const searchBooks = (searchString) => {
+export const searchTitles = (searchString) => {
     return dispatch => {
-        fetch("/api/books?q=" + searchString)
+        fetch("/api/titles?q=" + searchString)
         .then(response => response.json())
         .then(json => dispatch(loadBooksDropdown(json)));
     }

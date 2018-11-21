@@ -2,9 +2,9 @@ import { fetchBooks } from './books';
 
 export const fetchCategories = () => {
     return dispatch => {
-        fetch("http://127.0.0.1:8000/categories")
-            .then(response => response.json())
-            .then(json => dispatch(loadCategories(json)));
+        fetch("/categories")
+        .then(response => response.json())
+        .then(json => dispatch(loadCategories(json)));
     }
 }
 

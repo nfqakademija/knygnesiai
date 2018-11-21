@@ -13,7 +13,6 @@ class CategoryFilter extends React.Component {
         const categories = this.props.categories.map(item => 
             <li onClick={() => this.props.setCategory(item.id)} className={ "filter-list__item " + (this.props.selected === item.id ? "filter-list__item--selected":"")} key={ item.id }>
                 <span>{ item.name }</span>
-                <span className="filter-list__count">(200)</span>
             </li>
         )
         return (

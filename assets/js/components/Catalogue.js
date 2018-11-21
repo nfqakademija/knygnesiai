@@ -41,7 +41,7 @@ export default class Catalogue extends React.Component {
                     <div className="content-wrapper">
                         <aside className="left-container">
                             <CategoryFilter />
-                            <div className="filter-list__container">
+                            {/* <div className="filter-list__container">
                                 <div className="filter-list">
                                     <div className="filter-list__title">Languages</div>
                                     <ul>
@@ -56,7 +56,7 @@ export default class Catalogue extends React.Component {
                                         { bindings }
                                     </ul>
                                 </div>
-                            </div>
+                            </div> */}
                         </aside>
                         <div className="right-container">
                             <div className="bookList-container">

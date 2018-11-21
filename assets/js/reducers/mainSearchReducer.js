@@ -1,13 +1,18 @@
 const initialState = {
-    searchString: ""
+    searchString: "",
+    dropdownItems: []
 }
 
 const mainSearchReducer = (state = initialState, action) => {
-    let currentString = state.searchString;
-    if (currentString != action.searchString) {
-        return {...state, searchString: action.searchString}
-    } else {
-        return state;
+    switch(action.type) {
+        case "SET_SEARCH_STRING":
+            return {...state, searchString: action.searchString}
+        case "LOAD_BOOKS_DROPDOWN": 
+            return {...state, dropdownItems: action.books};
+        case "CLEAR_SEARCH_DROPDOWN":
+            return {...state, dropdownItems: []}
+        default:
+            return state;
     }
 }
 

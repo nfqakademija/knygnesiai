@@ -34,19 +34,34 @@ class BookRepository extends ServiceEntityRepository
     /**
      * @return Book[]
      */
-    public function getBooks(string $str = null, $category = 0): array
+    public function getBooks(string $str, $category = 0): array
     {
         $qb = $this->createQueryBuilder('b');
-        if (isset($str)) {
-            $qb->where('b.title like :param')
+        if ($str != 'undefined') {
+            $qb->andWhere('b.title like :param')
                ->setParameter('param', $str . '%');
         }
         if ($category != 0) {
-            $qb->where('b.category = :category')
+            $qb->andWhere('b.category = :category')
                ->setParameter('category', $category);
         }
         
         $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function getTitles(string $str): array 
+    {
+        $qb = $this->createQueryBuilder('b')
+                   ->select('b.title')
+                   ->distinct()
+                   ->where('LOWER(b.title) like :param')
+                   ->setParameter('param', $str . '%');
+        $query = $qb->getQuery();
+        
         return $query->getResult();
     }
 }

@@ -1,14 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { setSearchString } from "../actions/search";
 
 
 class SearchDropdown extends React.Component {
     render() {
         return (
-            <div className="searchDropdown-container">
+            <div className="search-dropdown-container">
                 <ul>
-                    {this.props.books.map((item) => <li key={ item.id }><NavLink to={'/books/' + item.id}>{ item.title }</NavLink></li>)}
+                    {this.props.titles.map((obj) => 
+                        <NavLink to="/">
+                            <li className="search-dropdown__item" onMouseDown={ () => this.props.setSearchString(obj.title) } key={ obj.title }>{ obj.title }</li></NavLink>)}
+                        
                 </ul>
             </div>
         )
@@ -16,8 +20,12 @@ class SearchDropdown extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    books: state.books.dropdownItems
+    titles: state.mainSearch.dropdownItems
+})
+
+const mapDispatchToProps = dispatch => ({
+    setSearchString: (string) => dispatch(setSearchString(string))
 })
 
 
-export default connect(mapStateToProps, null)(SearchDropdown);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchDropdown);

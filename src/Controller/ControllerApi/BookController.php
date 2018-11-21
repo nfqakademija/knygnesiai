@@ -25,15 +25,14 @@ class BookController extends Controller
      *
      * @return JsonResponse
      */
-    public function index(BookService $bookService)
+    public function index(Request $request, BookService $bookService)
     {
-        $request = Request::createFromGlobals();
-        $queryString = $request->query->get('q');
+        $title = $request->query->get('title');
         $category = $request->query->get('category');
 
         $books = $this->getDoctrine()
-          ->getRepository("App\Entity\Book\Book")
-          ->getBooks($queryString, $category);
+            ->getRepository("App\Entity\Book\Book")
+            ->getBooks($title, $category);
         
         $response = [];
         
@@ -56,4 +55,18 @@ class BookController extends Controller
         $response = $bookService->getJSONdata($book);
         return new JsonResponse($response, 200);
     }
+
+    /**
+     * @Route("/api/titles")
+     * 
+     * @return JsonResponse
+     */
+     public function getTitles(Request $request) {
+        $searchStr = $request->query->get('q');
+        $titles = $this->getDoctrine()
+            ->getRepository("App\Entity\Book\Book")
+            ->getTitles($searchStr);
+        
+        return new JsonResponse($titles, 200);
+     }
 }

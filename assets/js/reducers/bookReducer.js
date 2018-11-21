@@ -1,6 +1,5 @@
 const initialState = {
-    items: [],
-    dropdownItems: []
+    items: []
 }
 
 const bookReducer = (state = initialState, action) => {
@@ -8,8 +7,6 @@ const bookReducer = (state = initialState, action) => {
     switch(action.type) {
         case "LOAD_BOOKS":
             return {...state, items: action.books};
-        case "LOAD_BOOKS_DROPDOWN": 
-            return {...state, dropdownItems: action.books};
         case "UPDATE_BOOKS":
             updatedBooks = state.items.slice();
             updatedBooks.forEach((book, index) => {
@@ -18,6 +15,8 @@ const bookReducer = (state = initialState, action) => {
                 }
             })
             return {...state, items: updatedBooks};
+        case "RESET_BOOK_LIST":
+            return {...state, items: []}
         case "ADD_BOOK":
             updatedBooks = state.items.slice();
             updatedBooks.push(action.newBook);
