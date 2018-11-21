@@ -10,8 +10,11 @@ class CategoryFilter extends React.Component {
     }
 
     render() {
+        if (this.props.categories.length && this.props.categories[0].name != 'All') {
+            this.props.categories.unshift({id: 0, name: "All"})
+        }
         const categories = this.props.categories.map(item => 
-            <li onClick={() => this.props.setCategory(item.id)} className={ "filter-list__item " + (this.props.selected === item.id ? "filter-list__item--selected":"")} key={ item.id }>
+            <li onClick={() => this.props.setCategory(item.id, item.name)} className={ "filter-list__item " + (this.props.selected === item.id ? "filter-list__item--selected":"")} key={ item.id }>
                 <span>{ item.name }</span>
             </li>
         )
@@ -35,7 +38,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchCategories: () => dispatch(fetchCategories()),
-    setCategory: (id) => dispatch(setCategory(id)) 
+    setCategory: (id, name) => dispatch(setCategory(id, name)) 
 })
 
 
