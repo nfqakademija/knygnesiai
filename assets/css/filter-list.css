@@ -14,25 +14,24 @@
 }
 
 .filter-list__item {
-    padding: 6px;
-    padding-left: 0px;
+    padding: 8px;
     border-radius: 3px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    transition: all .5s;
+    /* justify-content: space-between; */
+    transition: background .3s, padding .5s;
 
     color: #424242;
 }
 
 .filter-list__item:hover {
     cursor: pointer;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     background: #e1e1e1;
 }
 
 .filter-list__item--selected {
-    padding-left: 20px;
+    padding-left: 25px;
     background: #F7D358 !important;
     
 }
