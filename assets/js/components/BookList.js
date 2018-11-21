@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom';
-import { fetchBooks } from "../actions/books";
+import { fetchBooks, resetBookList } from "../actions/books";
 import Book from "./Book";
 
 class BookList extends React.Component{
     
     componentDidMount() {
+        this.props.resetBookList();
         this.props.fetchBooks();
     }
     
@@ -25,7 +26,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    fetchBooks: () => dispatch(fetchBooks())
+    fetchBooks: () => dispatch(fetchBooks()),
+    resetBookList: () => dispatch(resetBookList)
 })
 
 
