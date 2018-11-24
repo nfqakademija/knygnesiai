@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
-class Book
+class Book implements \JsonSerializable
 {
 
     use WithCreatedAt;
@@ -251,5 +251,21 @@ class Book
         $this->category = $category;
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'author' => $this->author,
+            'yearPublication' => $this->yearPublication,
+            'pageCount' => $this->pageCount,
+            'status' => $this->status,
+            'likeCount' => $this->likeCount,
+            'category' => $this->category->getId(),
+            'media' => $this->media->getFileName()
+        ];
     }
 }
