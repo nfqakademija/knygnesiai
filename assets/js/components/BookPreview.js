@@ -37,8 +37,7 @@ class BookPreview extends React.Component {
             <div className="bookPreview__mainContainer">
                 <div className="bookPreview__leftContainer">
                     <div className="bookPreview__contentContainer">
-                        /* FIXME: temporary fix, so project would not fail in yarn run encore production */
-                        {/*<img className= "bookPreview__image" src={require('../../../public/uploads/' + this.state.data.media)} alt="book"></img>*/}
+                        <img className= "bookPreview__image" src={('/uploads/' + this.state.data.media)} alt="book"></img>
                     </div>
                 </div>
                 <div className="bookPreview__rightContainer">
