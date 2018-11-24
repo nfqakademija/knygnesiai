@@ -23,14 +23,7 @@ class CategoryController extends Controller
     public function index(CategoryService $categoryService)
     {
         $categories= $categoryService->setReturnQuery(false)->getAll();
-        foreach ($categories as $category) {
-            $_category['id'] = $category->getId();
-            $_category['name'] = $category->getName();
-            $_category['createdAt'] = $category->getCreatedAt();
-            $_category['updatedAt'] = $category->getUpdatedAt();
-            $_categories[] = $_category;
-        }
-        return new JsonResponse($_categories, 200);
+        return new JsonResponse($categories, 200);
     }
 
 }
