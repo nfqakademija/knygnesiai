@@ -34,7 +34,7 @@ class BookRepository extends ServiceEntityRepository
     /**
      * @return Book[]
      */
-    public function getBooks(string $str, $category = 0): array
+    public function getBooks(string $str = null, $category = 0): array
     {
         $qb = $this->createQueryBuilder('b');
         if ($str != 'undefined') {
