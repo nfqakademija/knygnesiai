@@ -11,7 +11,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 class CategoryFixtures extends Fixture
 {
-    const COUNT_CATEGORY = 22;
+    const COUNT_CATEGORY = 12;
 
     /**
      * @var array
@@ -20,25 +20,16 @@ class CategoryFixtures extends Fixture
         'Arts',
         'Biographies',
         'Business',
-        'Kids',
         'Comics',
         'Computer',
         'Cooking',
-        'Reference',
+        'Fiction',
         'Sport',
         'History',
-        'Horror',
-        'Medical',
         'Religion',
-        'Romance',
-        'Fantasy',
         'Travel',
-        'Law',
-        'Westerns',
         'Programming',
-        'Garden',
-        'Education',
-        'Poem'
+        'Education'
 
     ];
 
