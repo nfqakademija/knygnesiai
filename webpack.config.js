@@ -41,7 +41,7 @@ Encore
     .enableReactPreset()
     .configureBabel((config) => {
         config.plugins = ['@babel/plugin-proposal-object-rest-spread'];
-        config.presets = ["@babel/preset-react"];
+        config.presets = ["@babel/preset-env", "@babel/preset-react"];
     })
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
