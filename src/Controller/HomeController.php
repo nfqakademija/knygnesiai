@@ -8,6 +8,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HomeController extends Controller
 {
@@ -44,10 +45,7 @@ class HomeController extends Controller
             // Moving file from temporary directory to normal one
             $file->move($uploadDir, $safeFileName);
         }
-        return $this->render('home/index.html.twig', [
-            'files' => $files,
-            'uploadedFiles' => $this->uploadedFiles($webDir),
-        ]);
+        return new JsonResponse($safeFileName, 201);
     }
 
     private function ensureUploadDirectoryExists($uploadDir) {
