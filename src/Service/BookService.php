@@ -29,24 +29,4 @@ class BookService extends BaseService
     {
         return $this->getResult($this->repository->createAll());
     }
-
-    /**
-     * @return array
-     */
-    public function getJSONdata($data) {
-        $emptyArray = array();
-        $emptyArray['id'] = $data->getId();
-        $emptyArray['title'] = $data->getTitle();
-        $emptyArray['description'] = $data->getDescription();
-        $emptyArray['author'] = $data->getAuthor();
-        $emptyArray['yearPublication'] = $data->getYearPublication();
-        $emptyArray['pageCount'] = $data->getPageCount();
-        $emptyArray['status'] = $data->getStatus();
-        $emptyArray['likeCount'] = $data->getLikeCount();
-        $emptyArray['category'] = $data->getCategory()->getName();
-        $emptyArray['createdAt'] = $data->getCreatedAt();
-        $emptyArray['updatedAt'] = $data->getUpdatedAt();
-        $emptyArray['media'] = $data->getMedia()->getFileName();
-        return $emptyArray;
-    }
 }
