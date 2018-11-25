@@ -52,6 +52,13 @@ class Book implements \JsonSerializable
     /**
      * @var string
      *
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imageName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $yearPublication;
@@ -83,6 +90,13 @@ class Book implements \JsonSerializable
      * @ORM\ManyToOne(targetEntity="App\Entity\Category\Category")
      */
     private $category;
+
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\Column(type="string", length = 255)
+    //  */
+    // private $condition;
 
 
     /**
@@ -152,6 +166,8 @@ class Book implements \JsonSerializable
 
         return $this;
     }
+
+    
 
     /**
      * @return string
@@ -253,6 +269,46 @@ class Book implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return condition
+     */
+    public function getCondition(): Book
+    {
+        return $this->condition;
+    }
+
+    /**
+     * @param string $condition
+     *
+     * @return $this
+     */
+    public function setCondition(string $condition)
+    {
+        $this->condition = $condition;
+
+        return $this;
+    }
+
+     /**
+     * @return imageName
+     */
+    public function getImageName(): Book
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return $this
+     */
+    public function setImageName(string $imageName)
+    {
+        $this->imageName = $imageName;
+        return $this;
+    }
+
+
     public function jsonSerialize()
     {
         return [
@@ -265,7 +321,7 @@ class Book implements \JsonSerializable
             'status' => $this->status,
             'likeCount' => $this->likeCount,
             'category' => $this->category->getId(),
-            'media' => $this->media->getFileName()
+            'imageName' => $this->imageName
         ];
     }
 }
