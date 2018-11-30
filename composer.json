@@ -8,8 +8,6 @@
         "doctrine/doctrine-bundle": "^1.9",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "doctrine/orm": "^2.6",
-        "friendsofsymfony/rest-bundle": "^2.4",
-        "jms/serializer-bundle": "^2.4",
         "nelmio/cors-bundle": "^1.5",
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/asset": "*",

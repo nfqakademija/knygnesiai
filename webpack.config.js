@@ -1,7 +1,7 @@
 var Encore = require('@symfony/webpack-encore');
 
 Encore
-    // directory where compiled assets will be stored
+// directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
     .setPublicPath('/build')
@@ -17,9 +17,8 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
-    .addEntry('js/index', './assets/js/index.js')
-    
-    .addStyleEntry('css/app', './assets/css/app.css')
+    .addEntry('js/app', './assets/js/app.js')
+    .addStyleEntry('css/app', './assets/css/app.scss')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -38,16 +37,12 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
-    .enableReactPreset()
-    .configureBabel((config) => {
-        config.plugins = ['@babel/plugin-proposal-object-rest-spread'];
-        config.presets = ["@babel/preset-env", "@babel/preset-react"];
-    })
-    // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
 
-    // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+// uncomment if you use TypeScript
+//.enableTypeScriptLoader()
+
+// uncomment if you're having problems with a jQuery plugin
+//.autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();
