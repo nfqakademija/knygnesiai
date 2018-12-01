@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
-class Book implements \JsonSerializable
+class Book
 {
 
     use WithCreatedAt;
@@ -48,13 +48,6 @@ class Book implements \JsonSerializable
      * @ORM\Column(type="string", length=255)
      */
     private $author;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255)
-     */
-    private $imageName;
 
     /**
      * @var string
@@ -267,61 +260,5 @@ class Book implements \JsonSerializable
         $this->category = $category;
 
         return $this;
-    }
-
-    /**
-     * @return condition
-     */
-    public function getCondition(): Book
-    {
-        return $this->condition;
-    }
-
-    /**
-     * @param string $condition
-     *
-     * @return $this
-     */
-    public function setCondition(string $condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-     /**
-     * @return imageName
-     */
-    public function getImageName(): Book
-    {
-        return $this->imageName;
-    }
-
-    /**
-     * @param string $imageName
-     *
-     * @return $this
-     */
-    public function setImageName(string $imageName)
-    {
-        $this->imageName = $imageName;
-        return $this;
-    }
-
-
-    public function jsonSerialize()
-    {
-        return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'description' => $this->description,
-            'author' => $this->author,
-            'yearPublication' => $this->yearPublication,
-            'pageCount' => $this->pageCount,
-            'status' => $this->status,
-            'likeCount' => $this->likeCount,
-            'category' => $this->category->getId(),
-            'imageName' => $this->imageName
-        ];
     }
 }

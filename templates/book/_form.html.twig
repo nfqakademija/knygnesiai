@@ -1,0 +1,29 @@
+<div class="form-group">
+    <div class="col-sm-12 col-md-6">
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_widget(form.title) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.author) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.yearPublication) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.pageCount) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.media) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.category) }}
+        </div>
+
+        <button class="btn btn-success">Save</button>
+        {{ form_end(form) }}
+    </div>
+</div>
