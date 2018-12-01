@@ -1,3 +1,17 @@
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+
+.card-img-top {
+  width: 50%;
+  margin: 10px 0px 5px 90px;
+  height: 245px;
+}
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 2.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.col-md-4 {
+  padding-bottom: 25px;
+}

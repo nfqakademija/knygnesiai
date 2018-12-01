@@ -4,4 +4,29 @@
 
 {% block body %}
 
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row">
+                {% for book in books %}
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <img class="card-img-top" src="{{ asset(getMediaUploadPath(book.media.filename)) }}"
+                                 alt="Card image cap">
+                            <div class="card-block p-3">
+                                <h4 class="card-title">{{ book.title }}</h4>
+                                <p class="card-text">
+                                    {{ book.description|striptags|length > 100 ? book.description|striptags|slice(0, 100) ~ '...' : book.description|striptags }}
+                                </p>
+                                <small class="text-muted">Author:{{ book.author }}</small>
+                                <br>
+                                <a href="#" class="btn btn-primary rounded-0 mb-2">Detail</a>
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

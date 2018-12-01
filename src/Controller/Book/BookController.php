@@ -18,7 +18,6 @@ class BookController extends Controller
     {
         $books = $bookService->setReturnQuery(false)->getAll();
 
-
         return $this->render('book/index.html.twig', [
             'books' => $books,
         ]);
