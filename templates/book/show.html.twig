@@ -1,0 +1,14 @@
+{% block content %}
+    <div class="col-md-12">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <img class="show-book" src="{{ asset(getMediaUploadPath(book.media.filename)) }}">
+        <h5 class="display-5">{{ book.title }}</h5>
+        <small class="text-muted">Author:{{ book.author }}</small>
+        <br>
+        <small class="text-muted">Category: {{ book.category.name }}</small>
+        <hr class="bg-dark w-25 ml-0">
+        <p>{{ book.description }}</p>
+    </div>
+{% endblock %}

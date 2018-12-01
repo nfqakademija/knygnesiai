@@ -20,12 +20,22 @@
                                 </p>
                                 <small class="text-muted">Author:{{ book.author }}</small>
                                 <br>
-                                <a href="#" class="btn btn-primary rounded-0 mb-2">Detail</a>
+                                <h5 class="js-order" data-href="{{ path('app_book_book_show', {'id': book.id}) }}">
+                                    <a data-toggle="modal" data-target="#orderModalCenter"
+                                       href="{{ path('app_book_book_show', {'id': book.id}) }}">Detail</a>
+                                </h5>
                             </div>
                         </div>
-
                     </div>
                 {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="modal js-order-show" id="orderModalCenter" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
             </div>
         </div>
     </div>
