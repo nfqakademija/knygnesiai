@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Book\Book;
+use App\Entity\Category\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -31,6 +32,22 @@ class BookRepository extends ServiceEntityRepository
 
         return $qb;
     }
+
+    /**
+     * @param $category
+     *
+     * @return mixed
+     */
+    public function findBooksByCategory($category)
+    {;
+        $qb = $this->createQueryBuilder('b');
+        $qb
+            ->where('b.category = :category')
+            ->setParameter('category', $category);
+
+        return $qb->getQuery()->getResult();
+    }
+
     /**
      * @return Book[]
      */

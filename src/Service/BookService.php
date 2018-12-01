@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Book\Book;
+use App\Entity\Category\Category;
 use App\Service\Traits\RepositoryResultsTrait;
 use Doctrine\ORM\QueryBuilder;
 
@@ -28,5 +29,15 @@ class BookService extends BaseService
     public function getAll()
     {
         return $this->getResult($this->repository->createAll());
+    }
+
+    /**
+     * @param Category $category
+     *
+     * @return mixed
+     */
+    public function getBooksByCategory($category)
+    {
+        return $this->repository->findBooksByCategory($category);
     }
 }
