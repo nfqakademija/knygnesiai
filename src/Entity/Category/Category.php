@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
-class Category implements \JsonSerializable
+class Category
 {
     use WithCreatedAt;
     use WithUpdatedAt;
@@ -29,7 +29,7 @@ class Category implements \JsonSerializable
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $name;
+    private $title;
 
 
     /**
@@ -43,30 +43,21 @@ class Category implements \JsonSerializable
     /**
      * @return string
      */
-    public function getName(): ?string
+    public function getTitle(): ?string
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * @param string $name
+     * @param string $title
      *
      * @return Category
      */
-    public function setName(string $name): Category
+    public function setTitle(string $title): Category
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
-    }
-
-    public function jsonSerialize() {
-        return [
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-            'createdAt' => $this->getCreatedAt(),
-            'updatedAt' => $this->getUpdatedAt()
-        ];
     }
 }
 

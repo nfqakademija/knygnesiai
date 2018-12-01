@@ -14,6 +14,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+/**
+ * Class BookType
+ */
 class BookType extends AbstractType
 {
     /**
@@ -79,7 +82,7 @@ class BookType extends AbstractType
                 [
                     'placeholder' => 'Choose category',
                     'class' => Category::class,
-                    'choice_label' => 'name',
+                    'choice_label' => 'title',
                     'mapped' => true,
                     'expanded' => false,
                     'multiple' => false,
@@ -101,6 +104,9 @@ class BookType extends AbstractType
         ;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(

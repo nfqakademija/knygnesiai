@@ -12,12 +12,12 @@
                    aria-haspopup="true" aria-expanded="false">Category</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     {% for category in categories %}
-                        <a class="dropdown-item" href="{{ path('app_category_category_index', { 'id': category.id }) }}">{{ category.name }}</a>
+                        <a class="dropdown-item" href="{{ path('app_category_category_index', { 'id': category.id }) }}">{{ category.title }}</a>
                     {% endfor %}
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Books</a>
+                <a class="nav-link" href="{{ path('app_book_book_index') }}">Books</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">WishList</a>

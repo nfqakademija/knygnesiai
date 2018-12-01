@@ -3,10 +3,15 @@
 namespace App\Entity\Book;
 
 use App\Entity\Category\Category;
+use App\Entity\Request\Request;
 use App\Entity\Traits\WithCreatedAt;
 use App\Entity\Traits\WithMedia;
 use App\Entity\Traits\WithUpdatedAt;
+use App\Entity\User\User;
+use App\Entity\WishList\WishList;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\HasLifecycleCallbacks()
@@ -66,16 +71,9 @@ class Book
     /**
      * @var boolean
      *
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $status;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $likeCount;
 
     /**
      * @var Category
@@ -84,14 +82,47 @@ class Book
      */
     private $category;
 
-    // /**
-    //  * @var string
-    //  *
-    //  * @ORM\Column(type="string", length = 255)
-    //  */
-    // private $condition;
+    /**
+     * @var ArrayCollection|PersistentCollection|array|WishList[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\WishList\WishList", mappedBy="book" , cascade={"persist", "remove"},
+     *                                                                              orphanRemoval=true)
+     */
+    private $wishLists;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\User\User")
+     */
+    private $user;
+
+    /**
+     * @var ArrayCollection|PersistentCollection|array|Request[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Request\Request", mappedBy="book" , cascade={"persist", "remove"},
+     *                                                                              orphanRemoval=true)
+     */
+    private $requests;
+
+    /**
+     * @var ArrayCollection|PersistentCollection|array|Request[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Request\Request", mappedBy="bookToChange" , cascade={"persist", "remove"},
+     *                                                                              orphanRemoval=true)
+     */
+    private $changeBooks;
 
 
+    /**
+     * Book constructor.
+     */
+    public function __construct()
+    {
+        $this->wishLists = new ArrayCollection();
+        $this->requests = new ArrayCollection();
+        $this->changeBooks = new ArrayCollection();
+    }
     /**
      * @return int
      */
@@ -160,8 +191,6 @@ class Book
         return $this;
     }
 
-    
-
     /**
      * @return string
      */
@@ -203,41 +232,21 @@ class Book
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function getStatus(): ?bool
+    public function getStatus()
     {
         return $this->status;
     }
 
     /**
-     * @param bool $status
+     * @param int $status
      *
      * @return Book
      */
-    public function setStatus(?bool $status): Book
+    public function setStatus(int $status): Book
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLikeCount(): ?int
-    {
-        return $this->likeCount;
-    }
-
-    /**
-     * @param int|null $likeCount
-     *
-     * @return Book
-     */
-    public function setLikeCount(?int $likeCount): Book
-    {
-        $this->likeCount = $likeCount;
 
         return $this;
     }
@@ -261,4 +270,157 @@ class Book
 
         return $this;
     }
+
+    /**
+     * @return WishList[]|array|ArrayCollection|PersistentCollection
+     */
+    public function getWishLists()
+    {
+        return $this->wishLists;
+    }
+
+    /**
+     * @param WishList[]
+     *
+     * @return $this
+     */
+    public function setWishLists($wishLists): self
+    {
+        $this->wishLists = $wishLists;
+
+        return $this;
+    }
+
+    /**
+     * @param WishList $wishList
+     *
+     * @return $this
+     */
+    public function addWishList(WishList $wishList)
+    {
+        if (!$this->wishLists->contains($wishList)) {
+            $this->wishLists->add($wishList);
+
+            $wishList->setBook($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param WishList $wishList
+     *
+     * @return $this
+     */
+    public function removeWishList(WishList $wishList)
+    {
+        if ($this->wishLists->contains($wishList)) {
+            $this->wishLists->removeElement($wishList);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Request[]|array|ArrayCollection|PersistentCollection
+     */
+    public function getRequests()
+    {
+        return $this->requests;
+    }
+
+    /**
+     * @param Request[]
+     *
+     * @return $this
+     */
+    public function setRequests($requests): self
+    {
+        $this->requests = $requests;
+
+        return $this;
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return $this
+     */
+    public function addRequest(Request $request)
+    {
+        if (!$this->requests->contains($request)) {
+            $this->requests->add($request);
+
+            $request->setBook($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return $this
+     */
+    public function removeRequest(Request $request)
+    {
+        if ($this->requests->contains($request)) {
+            $this->requests->removeElement($request);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Request[]|array|ArrayCollection|PersistentCollection
+     */
+    public function getChangeBooks()
+    {
+        return $this->changeBooks;
+    }
+
+    /**
+     * @param Request[]
+     *
+     * @return $this
+     */
+    public function setChangeBooks($changeBooks): self
+    {
+        $this->changeBooks = $changeBooks;
+
+        return $this;
+    }
+
+    /**
+     * @param Request $changeBook
+     *
+     * @return $this
+     */
+    public function addChangeBook(Request $changeBook)
+    {
+        if (!$this->changeBooks->contains($changeBook)) {
+            $this->changeBooks->add($changeBook);
+
+            $changeBook->setBookToChange($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Request $changeBook
+     *
+     * @return $this
+     */
+    public function removeChangeBook(Request $changeBook)
+    {
+        if ($this->changeBooks->contains($changeBook)) {
+            $this->changeBooks->removeElement($changeBook);
+        }
+
+        return $this;
+    }
+
+
+
 }
