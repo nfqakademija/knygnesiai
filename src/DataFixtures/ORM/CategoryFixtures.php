@@ -41,7 +41,7 @@ class CategoryFixtures extends Fixture
         for ($i = 0; $i < self::COUNT_CATEGORY; $i++) {
 
             $category = new Category();
-            $category->setName(self::$names[$i]);
+            $category->setTitle(self::$names[$i]);
             $manager->persist($category);
         }
 

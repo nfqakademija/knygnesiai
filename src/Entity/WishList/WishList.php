@@ -9,8 +9,8 @@ use App\Entity\Traits\WithUpdatedAt;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="App\Repository\WishListRepository")
- * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
 class WishList
 {
@@ -51,17 +51,21 @@ class WishList
     /**
      * @return Category
      */
-    public function getCategory(): Category
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
     /**
      * @param Category $category
+     *
+     * @return $this
      */
-    public function setCategory(Category $category): void
+    public function setCategory(Category $category): WishList
     {
         $this->category = $category;
+
+        return $this;
     }
 
     /**
@@ -74,9 +78,13 @@ class WishList
 
     /**
      * @param Book $book
+     *
+     * @return $this
      */
-    public function setBook(Book $book): void
+    public function setBook(Book $book): WishList
     {
         $this->book = $book;
+
+        return $this;
     }
 }

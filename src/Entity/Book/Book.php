@@ -90,6 +90,7 @@ class Book
      */
     private $wishLists;
 
+
     /**
      * @var User
      *
@@ -421,6 +422,25 @@ class Book
         return $this;
     }
 
+    /**
+     * @return User
+     */
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return $this
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 
 
 }

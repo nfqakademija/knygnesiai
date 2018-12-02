@@ -79,7 +79,13 @@ class BookController extends Controller
      * @return Response
      * @throws \Exception
      */
-    public function create(Request $request, BookService $bookService, FlashBagInterface $flashBag, RouterInterface $router, CategoryService $categoryService ): Response {
+    public function create(
+        Request $request,
+        BookService $bookService,
+        FlashBagInterface $flashBag,
+        RouterInterface $router,
+        CategoryService $categoryService
+    ): Response {
 
         $categories = $categoryService->setReturnQuery(false)->getAll();
         $book = new Book();
@@ -89,7 +95,7 @@ class BookController extends Controller
             $bookService->create($book);
             $flashBag->add('success', ('Book success'));
 
-            return new RedirectResponse($router->generate('app_book_book_index'));
+            return new RedirectResponse($router->generate('app_wishlist_wishlist_create', ['id' => $book->getId()]));
         }
 
         return $this->render(

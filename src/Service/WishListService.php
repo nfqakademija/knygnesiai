@@ -2,15 +2,15 @@
 
 namespace App\Service;
 
-use App\Entity\Category\Category;
+
+use App\Entity\WishList\WishList;
 use App\Service\Traits\RepositoryResultsTrait;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Class CategoryService
- * @package App\Service
+ * Class WishListService
  */
-class CategoryService extends BaseService
+class WishListService extends BaseService
 {
     use RepositoryResultsTrait;
 
@@ -19,26 +19,16 @@ class CategoryService extends BaseService
      */
     public function getEntityClass(): string
     {
-        return Category::class;
+        return WishList::class;
     }
 
     /**
-     * @return Category[]|array|QueryBuilder
+     * @return WishList[]|array|QueryBuilder
      * @throws \Doctrine\ORM\ORMException
      */
     public function getAll()
     {
         return $this->getResult($this->repository->createAll());
-    }
-
-    /**
-     * @param Category $category
-     *
-     * @return mixed
-     */
-    public function getWishListsByCategory($category)
-    {
-        return $this->repository->findWishListByCategory($category);
     }
 
 }

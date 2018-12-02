@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Book\Book;
 use App\Entity\Category\Category;
+use App\EventListener\AddBookCategoriesToWishList;
 use App\Form\Media\MediaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -100,8 +101,25 @@ class BookType extends AbstractType
                         new NotBlank(),
                     ]
                 ]
-            )
-        ;
+            );
+
+//            ->add(
+//                'categories',
+//                EntityType::class,
+//                [
+//                    'class' => Category::class,
+//                    'choice_label' => 'title',
+//                    'mapped' => false,
+//                    'expanded' => true,
+//                    'multiple' => true,
+//                    'constraints' => [
+//                        new NotBlank(),
+//                    ],
+//                ]
+//            );
+
+//        $builder->addEventSubscriber(new AddBookCategoriesToWishList());
+
     }
 
     /**

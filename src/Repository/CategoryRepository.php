@@ -35,4 +35,19 @@ class CategoryRepository extends ServiceEntityRepository
         return $qb;
     }
 
+    /**
+     * @param $category
+     *
+     * @return mixed
+     */
+    public function findWishListByCategory(int $category)
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb
+            ->where('c = :category')
+            ->setParameter('category', $category);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
 }

@@ -7,18 +7,19 @@ use App\DataFixtures\ORM\Traits\WithRandomsTrait;
 use App\Entity\Book\Book;
 use App\Entity\Category\Category;
 use App\Entity\Media\Media;
+use App\Entity\User\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Class BookFixtures
  */
-class GBookFixtures extends Fixture
+class ZBookFixtures extends Fixture
 {
     use WithFileManagementTrait,
         WithRandomsTrait;
 
-    const COUNT_BOOKS = 20;
+    const COUNT_BOOKS = 100;
 
     /**
      * @var array
@@ -74,12 +75,14 @@ class GBookFixtures extends Fixture
     {
 
         $categories = $manager->getRepository(Category::class)->findAll();
+        $users = $manager->getRepository(User::class)->findAll();
 
         for ($i = 0; $i < self::COUNT_BOOKS; $i++) {
             $media = (new Media())
                 ->setFile($this->randomImage('book', '.jpg'));
 
             $category = $categories[(rand(0, sizeof($categories) - 1))];
+            $user = $users[(rand(0, sizeof($users) - 1))];
             $title = self::$titles[(rand(0, sizeof(self::$titles) - 1))];
             $description = self::$descriptions[(rand(0, sizeof(self::$descriptions) - 1))];
             $author = self::$authors[(rand(0, sizeof(self::$authors) - 1))];
@@ -92,13 +95,14 @@ class GBookFixtures extends Fixture
                 ->setYearPublication(rand(1965, 2017))
                 ->setPageCount(rand(50, 350))
                 ->setStatus(rand(0, 3))
-                ->setLikeCount(rand(0, 25))
+                ->setUser($user)
                 ->setMedia($media)
                 ->setCategory($category);
 
             $manager->persist($media);
             $manager->persist($book);
             $manager->persist($category);
+            $manager->persist($user);
 
         }
 
